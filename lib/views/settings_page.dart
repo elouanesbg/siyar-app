@@ -12,6 +12,10 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   int fontSize = 18;
   String searchIn = "name";
+  var searchInDict = <String, String>{
+    "name": "الاسم",
+    "biography": "السيرة الذاتية"
+  };
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -40,7 +44,7 @@ class _SettingPageState extends State<SettingPage> {
                       items: <double>[12, 16, 18, 22].map((double value) {
                         return DropdownMenuItem<double>(
                           value: value,
-                          child: Text("$value"),
+                          child: Text("${value.toInt()}"),
                         );
                       }).toList(),
                       onChanged: (value) {
@@ -64,7 +68,7 @@ class _SettingPageState extends State<SettingPage> {
                       items: <String>["name", "biography"].map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value),
+                          child: Text(searchInDict[value]!),
                         );
                       }).toList(),
                       onChanged: (value) {

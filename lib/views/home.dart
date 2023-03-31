@@ -214,10 +214,10 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Container(
               color: Theme.of(context).primaryColor,
-              height: height + 75,
+              height: height + 85,
               width: MediaQuery.of(context).size.width,
               child: const Padding(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                 child: Center(
                   child: Text(
                     "سير أعلام النبلاء",
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(),
             Positioned(
-              top: 100.0,
+              top: 110.0,
               left: 20.0,
               right: 20.0,
               child: AppBar(
@@ -251,17 +251,20 @@ class _HomePageState extends State<HomePage> {
                     search(value);
                   },
                   decoration: InputDecoration(
-                    suffixIcon: _controller.text.isNotEmpty
-                        ? IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _controller.text = "";
-                              });
-                              search("");
-                            },
-                            icon: const Icon(Icons.clear),
-                          )
-                        : Container(),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _controller.text = "";
+                        });
+                        search("");
+                      },
+                      icon: Icon(
+                        Icons.clear,
+                        color: _controller.text.isNotEmpty
+                            ? Colors.grey
+                            : Colors.white,
+                      ),
+                    ),
                     hintText: "بحث",
                     border: InputBorder.none,
                     hintStyle: const TextStyle(
@@ -270,10 +273,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 actions: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.search,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 4, 0),
+                    child: Icon(Icons.search,
                         color: Theme.of(context).primaryColor),
-                    onPressed: () {},
                   ),
                 ],
               ),
