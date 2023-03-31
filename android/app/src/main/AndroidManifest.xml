@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dz.elouanesbg.siyar.siyar">
    <application
-        android:label="siyar"
+        android:label="سير أعلام النبلاء"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
