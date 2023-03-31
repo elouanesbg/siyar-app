@@ -19,10 +19,10 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = TextEditingController();
   // ignore: non_constant_identifier_names
-  final Uri _github_url = Uri(
-      scheme: 'https',
-      host: 'github.com',
-      path: 'beraoudabdelkhalek/siyar-celebrities');
+  final Uri _github_url =
+      Uri(scheme: 'https', host: 'github.com', path: 'elouanesbg/siyar-app');
+  final Uri _app_url =
+      Uri(scheme: 'https', host: 'github.com', path: 'elouanesbg/siyar-app');
   late bool isLoadingData = true;
   List<Celebrity> celebrityItems = [];
   List<Celebrity> celebrityItemsSearch = [];
@@ -153,10 +153,6 @@ class _HomePageState extends State<HomePage> {
                   const DrawerHeader(
                     decoration: BoxDecoration(
                       color: Color(0xFF343A40),
-                      /*image: DecorationImage(
-                        image: AssetImage("assets/img/bg.jpeg"),
-                        fit: BoxFit.cover,
-                      ),*/
                     ),
                     child: Text(
                       'سير أعلام النبلاء',
@@ -185,9 +181,16 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pop(context);
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (_) => const AboutPage(),
+                          builder: (_) => AboutPage(),
                         ),
                       );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.rate_review),
+                    title: const Text('قيم التطبيق'),
+                    onTap: () {
+                      _launchInBrowser(_app_url);
                     },
                   ),
                 ],
