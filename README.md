@@ -1,5 +1,9 @@
 # سير أعلام النبلاء
 
+<p align="center">
+  <img src="assets\img\app-icon.png" width="85" title="hover text">
+</p>
+
 A Flutter Project Based on this repository  https://github.com/beraoudabdelkhalek/siyar-celebrities
 
 ## Screenshot
