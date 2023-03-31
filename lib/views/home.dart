@@ -4,7 +4,8 @@ import 'package:siyar/models/celebrity.dart';
 import 'package:siyar/provide/user_provide.dart';
 import 'package:siyar/services/data_service.dart';
 import 'package:siyar/views/about_page.dart';
-import 'package:siyar/views/celebrity_page.dart';
+import 'package:siyar/views/celebrity_card.dart';
+import 'package:siyar/views/celebrity_favorite_page.dart';
 import 'package:siyar/views/settings_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,9 +20,9 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = TextEditingController();
   // ignore: non_constant_identifier_names
-  final Uri _github_url =
+  final Uri githubUrl =
       Uri(scheme: 'https', host: 'github.com', path: 'elouanesbg/siyar-app');
-  final Uri _app_url =
+  final Uri appUrl =
       Uri(scheme: 'https', host: 'github.com', path: 'elouanesbg/siyar-app');
   late bool isLoadingData = true;
   List<Celebrity> celebrityItems = [];
@@ -91,55 +92,9 @@ class _HomePageState extends State<HomePage> {
               ? const CircularProgressIndicator()
               : ListView.builder(
                   itemCount: celebrityItemsSearch.length,
-                  itemBuilder: (context, index) =>
-                      buildCard(celebrityItemsSearch[index]))),
-    );
-  }
-
-  Widget buildCard(Celebrity celebrity) {
-    return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) =>
-              CelebrityPage(celebrity: celebrity, isFavorite: false),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ClipRRect(
-          child: Card(
-            color: const Color.fromARGB(255, 229, 235, 240),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.all(0),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF343A40),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(0.0),
-                      bottomLeft: Radius.circular(0.0),
-                    ),
-                  ),
-                  width: 20,
-                  height: 73,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ListTile(
-                    title: Hero(
-                      tag: celebrity.id,
-                      child: Text(
-                        celebrity.name,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+                  itemBuilder: (context, index) => CelebrityCard(
+                        celebrity: celebrityItemsSearch[index],
+                      ))),
     );
   }
 
@@ -175,6 +130,18 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: const Text('المفضلة'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const CelebrityFavoritePage(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
                     leading: const Icon(Icons.help),
                     title: const Text('حول التطبيق'),
                     onTap: () {
@@ -190,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                     leading: const Icon(Icons.rate_review),
                     title: const Text('قيم التطبيق'),
                     onTap: () {
-                      _launchInBrowser(_app_url);
+                      _launchInBrowser(appUrl);
                     },
                   ),
                 ],
@@ -200,7 +167,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 18),
               child: GestureDetector(
                 onTap: () async {
-                  _launchInBrowser(_github_url);
+                  _launchInBrowser(githubUrl);
                 },
                 child: Image.asset(
                   "assets/img/github.png",

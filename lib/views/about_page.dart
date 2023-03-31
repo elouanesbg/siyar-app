@@ -3,8 +3,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   AboutPage({super.key});
-  final Uri _github_url =
-      Uri(scheme: 'https', host: 'github.com', path: 'elouanesbg/siyar-app');
+  final Uri githubUrl = Uri(
+      scheme: 'https',
+      host: 'github.com',
+      path: 'beraoudabdelkhalek/siyar-celebrities');
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
       url,
@@ -24,7 +26,7 @@ class AboutPage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(14, 8, 14, 40),
+            padding: const EdgeInsets.fromLTRB(14, 8, 14, 40),
             child: Center(
               child: Column(
                 // ignore: prefer_const_literals_to_create_immutables
@@ -46,7 +48,7 @@ class AboutPage extends StatelessWidget {
                     padding: const EdgeInsets.all(24.0),
                     child: GestureDetector(
                       onTap: () async {
-                        _launchInBrowser(_github_url);
+                        _launchInBrowser(githubUrl);
                       },
                       child: Image.asset(
                         "assets/img/github.png",

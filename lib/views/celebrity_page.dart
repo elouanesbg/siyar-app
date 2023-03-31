@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:siyar/models/celebrity.dart';
@@ -11,6 +13,8 @@ class CelebrityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isFav =
+        context.watch<UserProvider>().isfavCelebrity("${celebrity.id}");
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -18,10 +22,21 @@ class CelebrityPage extends StatelessWidget {
           title: Text(celebrity.name),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                log("click: $isFavorite");
+                if (isFav) {
+                  context
+                      .read<UserProvider>()
+                      .removefavCelebrity("${celebrity.id}");
+                } else {
+                  context
+                      .read<UserProvider>()
+                      .addfavCelebrity("${celebrity.id}");
+                }
+              },
               icon: Icon(
-                Icons.share,
-                color: isFavorite ? Colors.red : Colors.white,
+                Icons.favorite,
+                color: isFav ? Colors.red : Colors.white,
               ),
             )
           ],
