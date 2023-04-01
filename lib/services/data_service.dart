@@ -5,7 +5,8 @@ import 'package:siyar/models/celebrity.dart';
 
 class DataService {
   Future<List<Celebrity>> readJson() async {
-    final String response = await rootBundle.loadString('assets/siyar.json');
+    final String response =
+        await rootBundle.loadString('assets/siyar_normalize.json');
     List data = await json.decode(response);
     return data.map((json) => Celebrity.fromJson(json)).toList();
   }

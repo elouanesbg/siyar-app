@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:siyar/models/celebrity.dart';
@@ -28,6 +30,15 @@ class _HomePageState extends State<HomePage> {
   List<Celebrity> celebrityItems = [];
   List<Celebrity> celebrityItemsSearch = [];
 
+  normalize(String text) {
+    Map hamze = {"أ": "ا", "آ": "ا", "إ": "ا"};
+    String newText = text;
+    hamze.forEach((key, value) {
+      newText = newText.replaceAll(key, value);
+    });
+    return newText;
+  }
+
   search(String val) {
     if (val.trim().isEmpty) {
       setState(() {
@@ -42,8 +53,9 @@ class _HomePageState extends State<HomePage> {
     var searchIn = context.read<UserProvider>().getsearchIn;
     late List<Celebrity> serachData;
     if (searchIn == "name") {
+      String q = normalize(val);
       serachData = celebrityItems
-          .where((element) => element.name.startsWith(val))
+          .where((element) => element.normalizeName.startsWith(q))
           .toList();
     } else {
       serachData = celebrityItems
