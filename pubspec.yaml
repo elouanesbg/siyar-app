@@ -21,6 +21,8 @@ dependencies:
   kf_drawer: ^1.2.1
   url_launcher: ^6.1.10
   provider: ^6.0.5
+  window_manager: ^0.3.1
+  
   
 
 dev_dependencies:
@@ -29,16 +31,28 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.12.0
   flutter_native_splash: ^2.2.19
+  msix: ^3.9.1
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/img/app-icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
+  windows:
+    generate: true
+    image_path: "assets/img/app-icon-48.png"
+    icon_size: 48 # min:48, max:256, default: 48
 flutter_native_splash:
   color: "#ffffff"
   image: assets/img/app-icon.png
   android: true
   ios: true 
+msix_config:
+  display_name: سير أعلام النبلاء
+  publisher_display_name: elouanesbg
+  publisher: CN=58E6A3DE-0B9E-4235-8504-05D349CC7656
+  identity_name: 3312elouanesbg.165181705F2AD
+  languages: ar
+  logo_path: assets/img/app-icon-48.png
 flutter:
   uses-material-design: true
 

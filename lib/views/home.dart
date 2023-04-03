@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -191,7 +191,8 @@ class _HomePageState extends State<HomePage> {
       );
 
   _appBar(height) => PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width, height + 80),
+        preferredSize: Size(MediaQuery.of(context).size.width,
+            height + (Platform.isWindows ? 120 : 80)),
         child: Stack(
           children: <Widget>[
             Container(
