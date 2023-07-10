@@ -1,4 +1,4 @@
-package dz.bg.islamic.siyar
+package dz.elouanesbg.opensource.siyar
 
 import io.flutter.embedding.android.FlutterActivity
 
